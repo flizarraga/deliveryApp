@@ -1,0 +1,93 @@
+.order-list-content {
+  padding: 10px;
+  position: relative;
+  width: 100%;
+}
+.background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: #e9e9e9;
+  z-index: -1;
+  opacity: 0.7;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.item-row-wrapper {
+  position: relative;
+  display: flex;
+}
+li {
+  display: flex;
+  padding-top: 15px;
+}
+.item-row {
+  flex-direction: column;
+}
+.order-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.orderDate {
+  width: 10%;
+}
+.code {
+  width: 20%;
+}
+.userName {
+  width: 12%;
+}
+.location {
+  width: 30%;
+}
+.totalPrice {
+  width: 12%;
+}
+.detail {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
+.food-list {
+  list-style: none;
+  padding: 10px;
+  border-bottom: 1px solid;
+}
+.food {
+  padding: 5px 0;
+}
+.count {
+  width: 5%;
+}
+.foodName {
+  width: 15%;
+}
+.foodPrice {
+  width: 10%;
+}
+.detail-title {
+  display: block;
+  width: 100%;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+}
+.detail-content {
+  margin-top: 10px;
+}
+.action {
+  font-size: 14px;
+  color: #0081ef;
+  cursor: pointer;
+
+  &:hover {
+    color: #1CD9EF;
+  }
+}
+

@@ -1,0 +1,18 @@
+<div class="orden-content">
+  <span class="background"></span>
+  <p class="title"> Detalle </p>
+  <ul class="food-list">
+    <li *ngIf="getKeys().length == 0"> No hay comidas seleccionadas </li>
+    <li class="food-item" *ngFor="let key of getKeys()">
+      <span class="count">{{orderMap[key].count}}</span>
+      <span class="name">{{orderMap[key].food.name}}</span>
+      <span class="subtotal-price">$ {{getPrice(orderMap[key])}}</span>
+    </li>
+  </ul>
+  <p class="total-price-wrapper">
+    Total a pagar
+    <em class="total-price"> $ {{getTotalPrice()}}</em>
+  </p>
+</div>
+
+<app-orden-buttons *ngIf="state == 'ORDEN'" (clearEvent)="clear($event)" [state]="state"></app-orden-buttons>

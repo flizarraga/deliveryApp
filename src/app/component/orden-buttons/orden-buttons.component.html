@@ -1,0 +1,5 @@
+<p>
+  <button class="button" *ngIf="state != 'ORDEN'" (click)="prev()">VOLVER</button>
+  <button class="button" *ngIf="isEnabledClear() && state != 'CONFIRMACION'" (click)="clear()">LIMPIAR</button>
+  <button class="button" *ngIf="isEnabledNext()" (click)="next()">SIGUIENTE</button>
+</p>

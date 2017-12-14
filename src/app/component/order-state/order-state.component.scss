@@ -1,0 +1,30 @@
+.order-state-content {
+  width: 50%;
+  margin: 30px 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.state {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #bbb;
+  color: white;
+  height: 90px;
+  min-width: 90px;
+  border-radius: 50px;
+  font-size: 13px;
+}
+.-active {
+  color: white;
+  border-color: green !important;
+  background-color: green;
+}
+.next-step-bar {
+  height: 0;
+  width: 100%;
+  border: 2px solid #bbb;
+}
+

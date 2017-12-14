@@ -1,0 +1,14 @@
+<div class="app-content">
+  <app-toolbar></app-toolbar>
+  <span class="view-content {{getViewContent()}}">
+    <app-inicio *ngIf="compareContentType('INICIO')"></app-inicio>
+    <app-menu *ngIf="compareContentType('MENU')"></app-menu>
+    <app-pedido *ngIf="compareContentType('PEDIDO')"></app-pedido>
+    <app-user-list *ngIf="compareContentType('LISTAUSUARIOS')"></app-user-list>
+    <app-contacto *ngIf="compareContentType('CONTACTO')"></app-contacto>
+    <app-order-list *ngIf="compareContentType('LISTAPEDIDOS')"></app-order-list>
+    <app-order-list *ngIf="compareContentType('HISTORIAL')" type="HISTORIAL"></app-order-list>
+    <app-user *ngIf="compareContentType('REGISTRO')"></app-user>
+  </span>
+</div>
+

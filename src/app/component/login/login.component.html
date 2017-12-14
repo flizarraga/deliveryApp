@@ -1,0 +1,35 @@
+<div class="login-wrapper" *ngIf="!userLoged">
+  <span  class="tab" (click)="changeContent('REGISTRO')">
+    <span class="title"> Registrarse </span>
+  </span>
+
+  <span class="tab loggin" (click)="showTooltip = !showTooltip">
+    <span class="title"> Ingresar </span>
+  </span>
+
+  <div *ngIf="showTooltip" class="login-content">
+    <form [formGroup]="loginForm" (ngSubmit)="ingresar(); showValidation = true">
+      <p>
+        <input formControlName="userName" type="text" placeholder="Usuario">
+        <em *ngIf="loginForm.controls['userName'].hasError('required') && showValidation" class="error"> * Debe ingresar nombre de usuario </em>
+      </p>
+      <p>
+        <input formControlName="password" type="password" placeholder="Password">
+        <em *ngIf="loginForm.controls['password'].hasError('required') && showValidation" class="error"> * Debe ingresar contraseña </em>
+      </p>
+      <button class="button button-wrapper" type="submit">Ingresar</button>
+      <p *ngIf="errorMesssage"> {{errorMesssage}} </p>
+    </form>
+  </div>
+</div>
+
+<div class="login-wrapper" *ngIf="userLoged">
+  <span class="bienvenido">
+    Bienvenido {{userName}}
+  </span>
+
+    <span class="tab" (click)="salir()">
+    Cerrar sesion
+  </span>
+</div>
+

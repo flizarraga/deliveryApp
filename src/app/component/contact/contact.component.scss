@@ -1,0 +1,36 @@
+.contact-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.map-content {
+  display: flex;
+  flex-direction: column;
+}
+.location-title, .title {
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px 0;
+}
+.horario-container {
+  display: flex;
+  flex-direction: column;
+}
+.row {
+  padding: 10px 0;
+  font-size: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.dias {
+  justify-content: flex-start;
+  width: 50%;
+}
+
+.horarios {
+  justify-content: flex-end;
+  width: 50%;
+}

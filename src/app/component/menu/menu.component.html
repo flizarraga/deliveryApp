@@ -1,0 +1,69 @@
+<div class="food-card {{viewMode}}" *ngFor="let group of foodsGroup">
+  <div class="background"></div>
+  <div class="food-module">
+    <span class="foods-group">
+      <p class="food-type-title">
+        <span>{{group.foodType}}</span>
+        <span class="detail-action" *ngIf="!compareViewContent('MENU')">
+          <span *ngIf="showDetail[group.foodType]" (click)="showDetail[group.foodType] = false">Ocultar</span>
+          <span *ngIf="!showDetail[group.foodType]" (click)="showDetail[group.foodType] = true">Desplegar</span>
+        </span>
+      </p>
+      <ul *ngIf="showDetail[group.foodType] || compareViewContent('MENU')" class="list-content">
+        <li class="food" *ngFor="let food of group.foods">
+          <span class="description-content">
+            <p class="name">{{food.name}}</p>
+            <p class="description">{{food.description}}</p>
+          </span>
+
+          <span class="action-content">
+            <span *ngIf="compareViewContent('MENU')" class="action-wrapper">
+              <span class="action" *ngIf="hasUserAcces('FOOD_ACTIONS')" (click)="edit(food, group.foodType)"> Modificar </span>
+              <span class="action" *ngIf="hasUserAcces('FOOD_ACTIONS')" (click)="execute('DELETE', food)"> Eliminar </span>
+            </span>
+
+            <span class="price-wrapper">
+              <span class="price">$ {{food.price}}</span>
+              <span class="delete-button" *ngIf="!compareViewContent('MENU')" (click)="runAction('MINUS', food)">-</span>
+              <span class="add-button" *ngIf="!compareViewContent('MENU')" (click)="runAction('ADD', food)">+</span>
+            </span>
+          </span>
+        </li>
+      </ul>
+
+      <div class="add-food-content" *ngIf="hasUserAcces('FOOD_ACTIONS') && compareViewContent('MENU')">
+        <span class="add-food-title"> Detalle de comida </span>
+        <form [formGroup]="foodForms[group.foodType]" class="food-form">
+          <span class="description-info">
+            <p>
+              <input formControlName="name" type="text" placeholder="Nombre">
+              <em *ngIf="foodForms[group.foodType].controls['name'].hasError('required') && showValidation[group.foodType]" class="error">* Error este campo es obligatorio</em>
+            </p>
+            <p>
+              <input formControlName="description" type="text" placeholder="Descripcion">
+              <em *ngIf="foodForms[group.foodType].controls['description'].hasError('required') && showValidation[group.foodType]" class="error">* Error este campo es obligatorio</em>
+            </p>
+          </span>
+          <span class="food-info-content">
+            <span class="food-info-wrapper">
+              <p>
+                <input formControlName="price" type="text" placeholder="Precio">
+                <em *ngIf="foodForms[group.foodType].controls['price'].hasError('required') && showValidation[group.foodType]" class="error">* Error este campo es obligatorio</em>
+                <em *ngIf="foodForms[group.foodType].controls['price'].hasError('matchDecimal')" class="error">* Error formato inválido</em>
+              </p>
+
+              <p><input formControlName="foodType" type="text" placeholder="Tipo de comida"></p>
+            </span>
+
+            <span class="actions">
+              <button class="button" *ngIf="hasUserAcces('FOOD_ACTIONS') && !showUpdateButton" (click)="onSubmit(group.foodType)" type="submit">Agregar</button>
+              <button class="button" *ngIf="showUpdateButton" (click)="saveChanges(group.foodType)">Guardar</button>
+            </span>
+          </span>
+        </form>
+      </div>
+    </span>
+
+    <span *ngIf="compareViewContent('MENU')" class=" image-wrapper image-wrapper-{{group.foodType}}"></span>
+  </div>
+</div>

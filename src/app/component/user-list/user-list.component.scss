@@ -1,0 +1,72 @@
+.user-list-content {
+  padding: 10px;
+  background-color: azure;
+}
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.user {
+  border: 1px solid azure;
+
+  &:hover {
+    border-color: blue;
+  }
+}
+li {
+  padding: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+em {
+  display: inline-block;
+}
+.id {
+  width: 5%;
+}
+.userName {
+  width: 10%;
+}
+.email {
+  width: 20%;
+}
+.name {
+  width: 15%;
+}
+.location {
+  width: 25%;
+}
+.userType {
+  width: 5%;
+}
+.phoneNumber {
+  width: 10%;
+}
+.delete {
+  float: right;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  background-color: red;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+.action {
+  font-size: 14px;
+  color: #0081ef;
+  cursor: pointer;
+
+  &:hover {
+    color: #1CD9EF;
+  }
+}

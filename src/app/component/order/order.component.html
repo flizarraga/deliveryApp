@@ -1,0 +1,39 @@
+<div class="login-message"  *ngIf="!isUserLoged()">
+    Lo sentimos, debe tener una cuenta para realizar un pedido
+</div>
+
+<div *ngIf="isUserLoged()">
+  <app-order-state></app-order-state>
+
+  <div class="orden-module module" *ngIf="compareState('ORDEN')">
+    <app-menu class="menu-content" viewMode="PEDIDO"></app-menu>
+    <span class="detail-content">
+      <app-orden-detail state="ORDEN"></app-orden-detail>
+    </span>
+  </div>
+
+  <div class="confirmacion-module module" *ngIf="compareState('CONFIRMACION')">
+      <span class="detail-content">
+        <app-orden-detail state="CONFIRMACION"></app-orden-detail>
+      </span>
+
+      <span class="mapa-content">
+          <iframe
+            width="600"
+            height="450"
+            frameborder="0" style="border:0"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAe3_DBupOjJ4SYOK1YdXBQIyJ9ol8smj4&q=Av+Bartolome+Mitre+750,Avellaneda"
+            allowfullscreen>
+          </iframe>
+      </span>
+
+      <span class="user-info-content">
+        <app-user viewMode="PEDIDO" [user]="getUser()" [disabledButtons]="true" (cancelEvent)="cancel($event)" (confirmEvent)="confirm($event)"></app-user>
+      </span>
+  </div>
+
+  <div class="entrega-content" *ngIf="compareState('ENTREGA')">
+    <span class="entrega-title">Gracias! su pedido llegara pronto</span>
+    <span class="entrega-description">Su pedido llegara pronto</span>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+<div class="userform-content">
+  <span class="background"></span>
+
+  <form [formGroup]="userForm">
+    <span class="group" *ngIf="viewMode != 'PEDIDO'">
+      <p class="title-group">Cuenta</p>
+      <p class="item">
+        <em class="param-name">Usuario</em>
+        <input formControlName="userName" name="userName" type="text" [disabled]="viewMode == 'MODIFICACION'">
+        <em *ngIf="userForm.controls['userName'].hasError('required') && showValidation" class="error">* Este campo es obligatorio</em>
+        <em *ngIf="userExitError" class="error">* Este usuario ya está en uso </em>
+      </p>
+
+      <p class="item">
+        <em class="param-name">Contraseña</em>
+        <input formControlName="password" name="password" type="password">
+        <em *ngIf="userForm.controls['password'].hasError('required') && showValidation" class="error">* Este campo es obligatorio</em>
+      </p>
+
+      <p class="item">
+        <em class="param-name">Confirmar contraseña</em>
+        <input formControlName="confirmPassword" name="confirmPassword" type="password"/>
+        <em *ngIf="userForm.controls['confirmPassword'].hasError('required') && showValidation" class="error">* Este campo es obligatorio</em>
+        <em *ngIf="userForm.controls['confirmPassword'].hasError('matchPassword') && showValidation" class="error">* No coinciden las contraseñas</em>
+      </p>
+    </span>
+
+    <span class="group">
+      <p class="title-group">Informacón personal</p>
+      <p class="item item-group">
+        <span class="sub-item">
+          <em class="param-name">Nombre</em>
+          <input type="text" formControlName="name" name="name">
+          <em *ngIf="userForm.controls['name'].hasError('required') && showValidation" class="error">* Este campo es obligatorio</em>
+          <em *ngIf="userForm.controls['name'].hasError('pattern')" class="error">* Formato inválido</em>
+        </span>
+
+         <span class="sub-item">
+          <em class="param-name">Teléfono</em>
+          <input type="text" formControlName="phoneNumber" name="phoneNumber">
+          <em *ngIf="userForm.controls['phoneNumber'].hasError('required') && showValidation" class="error">* Este campo es obligatorio</em>
+          <em *ngIf="userForm.controls['phoneNumber'].hasError('pattern')" class="error">* Formato inválido</em>
+        </span>
+      </p>
+
+      <p class="item">
+        <em class="param-name">Email</em>
+        <input type="text" formControlName="email" name="email" placeholder="example@email.com">
+        <em *ngIf="userForm.controls['email'].hasError('required') && showValidation" class="error">* Este campo es obligatorio</em>
+        <em *ngIf="userForm.controls['email'].hasError('email') && showValidation" class="error">* Formato inválido</em>
+      </p>
+    </span>
+
+    <span class="group">
+      <p class="item">
+        <em class="param-name">Dirección</em>
+        <input type="text" formControlName="street" name="street" placeholder="Nombre de calle y numeración">
+        <em *ngIf="userForm.controls['street'].hasError('required') && showValidation" class="error">* Este campo es obligatorio</em>
+      </p>
+
+      <p class="item">
+        <em class="param-name">Localidad</em>
+        <select type="text" formControlName="location" name="location">
+          <option *ngFor="let location of locations" [value]="location">{{location}}</option>
+        </select>
+        <em *ngIf="userForm.controls['location'].hasError('required') && showValidation" class="error">* Este campo es obligatorio</em>
+      </p>
+
+      <p class="item" *ngIf="viewMode != 'PEDIDO' && hasUserAccess('ADD_USERS')">
+        <em class="param-name">Tipo de usuario</em>
+        <select type="text" formControlName="userType" name="userType">
+          <option value="C" selected>Comprador</option>
+          <option value="V">Vendedor</option>
+          <option value="S">Administrador</option>
+        </select>
+        <em *ngIf="userForm.controls['location'].hasError('required') && showValidation" class="error">* Este campo es obligatorio</em>
+      </p>
+    </span>
+
+    <span *ngIf="!disabledButtons">
+      <button class="button" (click)="userForm.reset()">Limpiar</button>
+      <button class="button" (click)=onSubmit()>Registrar</button>
+    </span>
+
+    <span *ngIf="disabledButtons">
+      <button class="button" (click)="cancel()">Cancelar</button>
+    <button class="button" (click)="confirm()">Confirmar</button>
+    </span>
+  </form>
+</div>

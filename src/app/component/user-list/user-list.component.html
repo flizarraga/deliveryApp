@@ -1,0 +1,31 @@
+<div *ngIf="showTable" class="user-list-content">
+  <ul class="list">
+    <li class="header-list">
+      <em class="userName">USUARIO</em>
+      <em class="email">EMAIL</em>
+      <em class="name">NOMBRE</em>
+      <em class="location">DIRECCION</em>
+      <em class="userType">TIPO</em>
+      <em class="phoneNumber">TELEFONO</em>
+    </li>
+    <li class="user" *ngFor="let user of users">
+      <em class="userName">{{user.userName}}</em>
+      <em class="email">{{user.email}}</em>
+      <em class="name">{{user.name}}</em>
+      <em class="location">{{user.location}}</em>
+      <em class="userType">{{user.userType}}</em>
+      <em class="phoneNumber">{{user.phoneNumber}}</em>
+      <em>
+        <p class="action" (click)="changeUser(user)">Modificar</p>
+        <p class="action" (click)="execute('DELETE', user)">Borrar</p>
+      </em>
+    </li>
+  </ul>
+
+  <span class="action" *ngIf="hasUserAccess('ADD_USERS')" (click)="addUser()"> Agregar usuario </span>
+</div>
+
+<div *ngIf="!showTable">
+  <app-user *ngIf="olderUser" [user]="userUpdate" (confirmEvent)="execute('UPDATE', $event.value)" (cancelEvent)="cancel()" [disabledButtons]="true"></app-user>
+  <app-user *ngIf="newUser" (confirmEvent)="execute('ADD', $event.value)" (cancelEvent)="cancel()" [disabledButtons]="true"></app-user>
+</div>

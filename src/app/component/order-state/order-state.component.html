@@ -1,0 +1,20 @@
+<div class="order-state-content">
+  <span class="state ORDEN" [ngClass]="{'-active': compareState('ORDEN')}">
+    <span class="img-content">X</span>
+    <p class="text"> Orden </p>
+  </span>
+
+  <span class="next-step-bar CONFIRMACION" [ngClass]="{'-active': compareState('CONFIRMACION')}"></span>
+
+  <span class="state CONFIRMACION" [ngClass]="{'-active': compareState('CONFIRMACION')}">
+    <span class="img-content">X</span>
+    <p class="text"> Confirmación </p>
+  </span>
+
+  <span class="next-step-bar ENTREGA" [ngClass]="{'-active': compareState('ENTREGA')}"></span>
+
+  <span class="state ENTREGA" [ngClass]="{'-active': compareState('ENTREGA')}">
+    <span class="img-content">X</span>
+    <p class="text"> Entrega </p>
+  </span>
+</div>

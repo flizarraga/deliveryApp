@@ -1,0 +1,35 @@
+<div class="order-list-content">
+  <span class="background"></span>
+
+  <ul class="order-list">
+      <li class="title-row">
+        <span class="orderDate">Fecha</span>
+        <span class="code">Código</span>
+        <span class="userName">Usuario</span>
+        <span class="location">Dirección</span>
+        <span class="totalPrice">Total</span>
+      </li>
+      <li class="nothing" *ngIf="orderList.length == 0"> Todavía no se ingresaron pedidos </li>
+      <li class="item-row" *ngFor="let order of orderList">
+        <div class="item-row-wrapper">
+          <span class="orderDate">{{order.orderDate}}</span>
+          <span class="code">{{order.code}}</span>
+          <span class="userName">{{order.userName}}</span>
+          <span class="location">{{order.location}}</span>
+          <span class="totalPrice">$ {{order.totalPrice}}</span>
+          <span class="detail action" *ngIf="!order.showDetail" (click)="order.showDetail = !order.showDetail"> Ver detalle </span>
+          <span class="detail action" *ngIf="order.showDetail" (click)="order.showDetail = !order.showDetail"> Ocultar detalle </span>
+        </div>
+        <div class="detail-content" *ngIf="order.showDetail">
+          <span class="detail-title">Detalle del pedido</span>
+          <ul class="food-list">
+            <li class="food" *ngFor="let food of order.foods">
+              <span class="count">{{food.count}}</span>
+              <span class="foodName">{{food.name}}</span>
+              <span class="foodPrice">$ {{food.price}}</span>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+</div>

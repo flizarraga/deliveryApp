@@ -1,0 +1,51 @@
+.module {
+  display: flex;
+  flex-direction: row;
+}
+.menu-content {
+  width: 70%;
+  margin-right: 10px;
+}
+.detail-content {
+  width: 30%;
+}
+.user-info-content {
+  display: flex;
+  width: 30%;
+  flex-direction: column;
+}
+.mapa-content {
+  display: flex;
+  width: 40%;
+  height: 500px;
+  margin: 0 10px;
+}
+app-order-state {
+  display: flex;
+  justify-content: center;
+}
+app-user {
+  width: 100%;
+  margin-right: 10px;
+}
+.login-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  font-weight: bold;
+  height:100%;
+}
+.entrega-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  font-weight: bold;
+  height:100%;
+  flex-direction: column;
+}
+.entrega-description {
+  padding-top: 20px;
+  font-size: 20px;
+}
