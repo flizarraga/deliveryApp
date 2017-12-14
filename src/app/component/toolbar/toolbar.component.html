@@ -3,8 +3,8 @@
     <span class="tab" (click)="changeContent('INICIO')">Inicio</span>
     <span class="tab" (click)="changeContent('MENU')">Menu</span>
     <span class="tab" (click)="changeContent('PEDIDO')">Pedido</span>
-    <span class="tab" *ngIf="hasUserAcces('LISTA_USUARIOS')" (click)="changeContent('LISTAPEDIDOS')">Ordenes</span>
-    <span class="tab" *ngIf="hasUserAcces('LISTA_USUARIOS')" (click)="changeContent('HISTORIAL')">Historial</span>
+    <span class="tab" *ngIf="hasUserAcces('LISTA_PEDIDOS')" (click)="changeContent('LISTAPEDIDOS')">Ordenes</span>
+    <span class="tab" *ngIf="hasUserAcces('HISTORY')" (click)="changeContent('HISTORIAL')">Historial</span>
     <span class="tab" *ngIf="hasUserAcces('LISTA_USUARIOS')" (click)="changeContent('LISTAUSUARIOS')"> Usuarios </span>
     <span class="tab" (click)="changeContent('CONTACTO')">Contacto</span>
   </span>

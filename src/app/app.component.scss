@@ -22,12 +22,7 @@ app-toolbar {
   height:100%;
   z-index: -1;
 
-  &.REGISTRO, &.LISTAUSUARIOS {
-    display: flex;
-    justify-content: center;
-  }
-
-  &.REGISTRO {
+  &.REGISTRO, &.EDITAR_PERFIL, &.LISTAUSUARIOS {
     display: flex;
     justify-content: center;
   }

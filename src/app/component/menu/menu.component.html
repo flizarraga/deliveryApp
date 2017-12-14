@@ -1,3 +1,6 @@
+<div class="message" *ngIf="message">
+  {{message}}
+</div>
 <div class="food-card {{viewMode}}" *ngFor="let group of foodsGroup">
   <div class="background"></div>
   <div class="food-module">

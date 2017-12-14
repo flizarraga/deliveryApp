@@ -20,6 +20,7 @@ export class MenuComponent implements OnInit {
   showUpdateButton: boolean = false;
   foodChange: any;
   showDetail: any = {};
+  message: string = "Cargando...";
 
   constructor(private _foodService: FoodService, private _orderService: OrderService, private _userAccessResolver: UserAccessResolverService
               , private _viewContentResolve: ViewContentResolveService) {}
@@ -27,6 +28,11 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     this._foodService.getAll().then((result) => {
       this.foodsGroup = result;
+      if (this.foodsGroup.length > 0) {
+        this.message = null;
+      } else {
+        this.message = "No hay comidas cargadas!";
+      }
       this.foodsGroup.forEach((group: any) => {
         this.foodForms[group.foodType] = new FormGroup({
           'name': new FormControl('', Validators.required),
@@ -36,6 +42,8 @@ export class MenuComponent implements OnInit {
         },
           DecimalValidation.MatchDecimal
         );
+      }, (error) => {
+        this.message = "Error - hubo problemas con la base de datos, intente nuevamente más tarde";
       });
     });
   }
@@ -47,6 +55,13 @@ export class MenuComponent implements OnInit {
   refresh() {
     this._foodService.getAll().then((result)=> {
       this.foodsGroup = result;
+      if (this.foodsGroup.length > 0) {
+        this.message = null;
+      } else {
+        this.message = "No hay comidas cargadas!";
+      }
+    }, (error) => {
+      this.message = "Error - hubo problemas con la base de datos, intente nuevamente más tarde";
     });
   }
 

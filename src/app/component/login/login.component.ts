@@ -53,6 +53,10 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  editarPerfil() {
+    this._viewContentResolver.changeViewContent('EDITAR_PERFIL')
+  }
+
   salir() {
     localStorage.removeItem("deliveryToken");
     this.userLoged = false;

@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {OrderService} from "../../services/order.service";
-var moment = require('moment/moment');
 
 @Component({
   selector: 'app-order-list',
@@ -10,6 +9,7 @@ var moment = require('moment/moment');
 export class OrderListComponent implements OnInit {
   @Input() type: string;
   orderList: any = [];
+  message: string = "Cargando...";
 
   constructor(private _orderService: OrderService) { }
 
@@ -24,16 +24,45 @@ export class OrderListComponent implements OnInit {
   getAll() {
     this._orderService.getAll().then((response) => {
       this.orderList = this.transform(response);
+      if (this.orderList.length > 0) {
+        this.message = null;
+      } else {
+        this.message = "Todavía no se ingresaron pedidos";
+      }
     }, (error) => {
-
+      this.message = "Error - hubo un fallo en la base de datos, intente más tarde";
     });
   }
 
   getAllToday() {
-    this._orderService.getAllToday(moment().format("YYYY-MM-DD").toString()).then((response) => {
-      this.orderList = this.transform(response);
-    }, (error) => {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
 
+    var anio = today.getFullYear();
+    var dia;
+    var mes;
+    if(dd<10){
+      dia='0'+dd;
+    } else {
+      dia = dd.toString();
+    }
+    if(mm<10){
+      mes='0'+mm;
+    } else {
+      mes = mm.toString();
+    }
+    var newToday = anio+"-"+mes+"-"+dia;
+
+    this._orderService.getAllToday(newToday).then((response) => {
+      this.orderList = this.transform(response);
+      if (this.orderList.length > 0) {
+        this.message = null;
+      } else {
+        this.message = "Todavía no se ingresaron pedidos";
+      }
+    }, (error) => {
+      this.message = error.error.statusCode + " - " + error.error.message;
     });
   }
 

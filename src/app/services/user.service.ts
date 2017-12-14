@@ -20,7 +20,7 @@ export class UserService {
       this._http.get(url, {headers: this.headers})
         .subscribe(
           (response: any) => resolve(response)
-          , (error) => reject()
+          , (error) => reject(error)
         );
     })
   }

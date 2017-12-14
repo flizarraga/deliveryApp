@@ -8,6 +8,11 @@
   padding: 10px;
   background-color: #1976d2;
 }
+.edit-user {
+  font-size: 14px;
+  cursor: pointer;
+  padding-top: 5px;
+}
 .tab {
   padding: 0 20px;
   display: flex;
@@ -18,6 +23,10 @@
     background-color: #4f8bc6;
     cursor: pointer;
   }
+}
+.login-error {
+  padding-top: 10px;
+  font-size: 15px;
 }
 .login-wrapper {
   display: flex;

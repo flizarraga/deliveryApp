@@ -18,7 +18,7 @@
         <em *ngIf="loginForm.controls['password'].hasError('required') && showValidation" class="error"> * Debe ingresar contraseña </em>
       </p>
       <button class="button button-wrapper" type="submit">Ingresar</button>
-      <p *ngIf="errorMesssage"> {{errorMesssage}} </p>
+      <p class="login-error" *ngIf="errorMesssage"> * {{errorMesssage}} </p>
     </form>
   </div>
 </div>
@@ -26,6 +26,7 @@
 <div class="login-wrapper" *ngIf="userLoged">
   <span class="bienvenido">
     Bienvenido {{userName}}
+    <p class="edit-user" (click)="editarPerfil()">Editar perfil</p>
   </span>
 
     <span class="tab" (click)="salir()">

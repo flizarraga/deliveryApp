@@ -1,6 +1,5 @@
 <div class="order-list-content">
   <span class="background"></span>
-
   <ul class="order-list">
       <li class="title-row">
         <span class="orderDate">Fecha</span>
@@ -9,7 +8,7 @@
         <span class="location">Dirección</span>
         <span class="totalPrice">Total</span>
       </li>
-      <li class="nothing" *ngIf="orderList.length == 0"> Todavía no se ingresaron pedidos </li>
+      <li class="message" *ngIf="message"> {{message}} </li>
       <li class="item-row" *ngFor="let order of orderList">
         <div class="item-row-wrapper">
           <span class="orderDate">{{order.orderDate}}</span>

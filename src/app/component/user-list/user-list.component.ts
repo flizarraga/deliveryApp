@@ -14,6 +14,7 @@ export class UserListComponent implements OnInit {
   showTable: boolean = true;
   newUser: boolean = true;
   olderUser: boolean = true;
+  message: string = "Cargando...";
 
   constructor(private _userService: UserService, private _userAccessResolver: UserAccessResolverService) { }
 
@@ -52,6 +53,13 @@ export class UserListComponent implements OnInit {
   refresh() {
     this._userService.getAll().then((result) => {
       this.users = result;
+      if (this.users.length > 0) {
+        this.message = null;
+      } else {
+        this.message = "No hay usuarios!";
+      }
+    }, (error) => {
+      this.message = "Error - hubo un fallo en la base de datos, intente más tarde";
     });
   }
 

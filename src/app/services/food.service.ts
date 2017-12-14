@@ -10,6 +10,8 @@ export class FoodService {
   constructor(private _http: HttpClient) {
     this.headers = new HttpHeaders();
     this.headers.append("Content-Type", "application/json");
+    this.headers.append("Access-Control-Allow-Origin", "https://deliveryya.000webhostapp.com");
+    this.headers.append("Access-Control-Allow-Credentials", "false");
   }
 
   getAll(): Promise<any> {
@@ -19,7 +21,7 @@ export class FoodService {
       this._http.get(url, {headers: this.headers})
         .subscribe(
           (response: any) => resolve(response)
-          , (error) => reject()
+          , (error) => reject(error)
         );
     })
   }

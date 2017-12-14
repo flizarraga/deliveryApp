@@ -17,7 +17,7 @@ export class OrderService {
         .subscribe((response) => {
           resolve(response);
         }, (error) => {
-
+          reject(error)
         })
       });
   };
@@ -30,7 +30,7 @@ export class OrderService {
         .subscribe((response) => {
           resolve(response);
         }, (error) => {
-
+          reject(error);
         })
     });
   };

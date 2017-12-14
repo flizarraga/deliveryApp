@@ -6,18 +6,18 @@
       <p class="title-group">Cuenta</p>
       <p class="item">
         <em class="param-name">Usuario</em>
-        <input formControlName="userName" name="userName" type="text" [disabled]="viewMode == 'MODIFICACION'">
+        <input formControlName="userName" name="userName" type="text" [disabled]="viewMode == 'MODIFICACION' || viewMode == 'EDITAR_PERFIL'">
         <em *ngIf="userForm.controls['userName'].hasError('required') && showValidation" class="error">* Este campo es obligatorio</em>
         <em *ngIf="userExitError" class="error">* Este usuario ya está en uso </em>
       </p>
 
-      <p class="item">
+      <p *ngIf="viewMode != 'EDITAR_PERFIL'" class="item">
         <em class="param-name">Contraseña</em>
         <input formControlName="password" name="password" type="password">
         <em *ngIf="userForm.controls['password'].hasError('required') && showValidation" class="error">* Este campo es obligatorio</em>
       </p>
 
-      <p class="item">
+      <p *ngIf="viewMode != 'EDITAR_PERFIL'" class="item">
         <em class="param-name">Confirmar contraseña</em>
         <input formControlName="confirmPassword" name="confirmPassword" type="password"/>
         <em *ngIf="userForm.controls['confirmPassword'].hasError('required') && showValidation" class="error">* Este campo es obligatorio</em>
@@ -61,7 +61,7 @@
       <p class="item">
         <em class="param-name">Localidad</em>
         <select type="text" formControlName="location" name="location">
-          <option *ngFor="let location of locations" [value]="location">{{location}}</option>
+          <option *ngFor="let location of locations" [value]="location" [selected]="isSelected(location)">{{location}}</option>
         </select>
         <em *ngIf="userForm.controls['location'].hasError('required') && showValidation" class="error">* Este campo es obligatorio</em>
       </p>
@@ -69,22 +69,27 @@
       <p class="item" *ngIf="viewMode != 'PEDIDO' && hasUserAccess('ADD_USERS')">
         <em class="param-name">Tipo de usuario</em>
         <select type="text" formControlName="userType" name="userType">
-          <option value="C" selected>Comprador</option>
-          <option value="V">Vendedor</option>
-          <option value="S">Administrador</option>
+          <option value="C" [selected]="isSelectedUserType('C')">Comprador</option>
+          <option value="V" [selected]="isSelectedUserType('V')">Vendedor</option>
+          <option value="S" [selected]="isSelectedUserType('S')">Administrador</option>
         </select>
         <em *ngIf="userForm.controls['location'].hasError('required') && showValidation" class="error">* Este campo es obligatorio</em>
       </p>
     </span>
 
-    <span *ngIf="!disabledButtons">
+    <span *ngIf="!disabledButtons && viewMode != 'EDITAR_PERFIL'">
       <button class="button" (click)="userForm.reset()">Limpiar</button>
       <button class="button" (click)=onSubmit()>Registrar</button>
     </span>
 
-    <span *ngIf="disabledButtons">
+    <span *ngIf="disabledButtons" && viewMode != 'EDITAR_PERFIL'>
       <button class="button" (click)="cancel()">Cancelar</button>
-    <button class="button" (click)="confirm()">Confirmar</button>
+      <button class="button" (click)="confirm()">Confirmar</button>
+    </span>
+
+    <span *ngIf="viewMode == 'EDITAR_PERFIL'">
+      <button class="button" (click)="cancel()">Cancelar</button>
+      <button class="button" (click)="saveChanges()">Guardar</button>
     </span>
   </form>
 </div>
